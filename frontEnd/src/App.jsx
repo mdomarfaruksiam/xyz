@@ -1,0 +1,27 @@
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router";
+import Layout from "./Layouts/Layout";
+import { useContext, useState } from "react";
+import { authContext } from "./Contexts/authContext";
+
+import Home from "./Pages/HomePage/Home";
+
+
+export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  return (
+    <authContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+      <RouterProvider router={createBrowserRouter([
+        {
+          path: "/",
+          element: <Layout />,
+          children: [
+            {
+              index: true,
+              element: <Home />
+            },
+          ],
+        },
+      ])} />
+    </authContext.Provider>
+  );
+}

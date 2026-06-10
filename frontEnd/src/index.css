@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+/* Custom styles can be added here */
+body {
+    background-color: #f1f0fc;
+    color: #1a202c;
+    display: flex;
+    flex-direction: column;
+    justify-content: between;
+    min-height: 100vh;
+}
