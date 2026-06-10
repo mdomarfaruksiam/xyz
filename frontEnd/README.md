@@ -3,3 +3,7 @@ authentication needs in
 
 project name should be changed 
  1. index.html //in title
+
+
+
+ https://github.com/mdomarfaruksiam/xyz/blob/main/frontEnd/README.md
