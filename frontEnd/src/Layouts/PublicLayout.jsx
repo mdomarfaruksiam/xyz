@@ -7,9 +7,7 @@ export default function PublicLayout() {
     return (
         <div className='min-h-dvh flex flex-col justify-between'>
             <Nav_1 />
-            <div>
-                <Outlet />
-            </div>
+            <Outlet />
             <Footer_1 />
         </div>
     )
