@@ -4,7 +4,6 @@ import { useContext, useState } from "react";
 import { authContext } from "./Contexts/authContext";
 
 import Home from "./Pages/HomePage/Home";
-import SolutionsHub from "./Components/SolutionHub";
 
 
 export default function App() {
@@ -17,7 +16,7 @@ export default function App() {
           element: <Layout />,
           children: [
             { index: true, element: <Home /> },
-            { path: 'solutions', element: <SolutionsHub /> },
+            // { path: 'solutions', element: <SolutionsHub /> },
           ],
         },
       ])} />

@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Nav_1() {
+export default function Nav_1() {
     return (
-        <div className="bg-brand-text">Nav_1</div>
+        <header>
+            button
+        </header>
     )
 }
-
-export default Nav_1

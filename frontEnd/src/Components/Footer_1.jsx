@@ -2,14 +2,14 @@ import React from 'react'
 
 export default function Footer_1() {
     return (
-        <footer className="bg-surface border-t border-border text-text mt-auto transition-colors duration-200">
+        <footer className="bg-surface border-t border-border text-text transition-colors duration-200">
             {/* Main Footer Container */}
             <div className="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
 
                 {/* Column 1: Brand & Status */}
                 <div className="space-y-4">
                     <h1 className="text-2xl font-black tracking-tight text-primary">
-                        XYZ
+                        XYZ B2B
                     </h1>
                     <p className="text-sm text-muted leading-relaxed">
                         Connecting global businesses with modern, seamless B2B commerce infrastructure.
