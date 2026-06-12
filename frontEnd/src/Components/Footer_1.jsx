@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer_1() {
     return (
-        <footer className="bg-surface border-t border-border text-text transition-colors duration-200">
+        <footer className="w-full bg-surface border-t border-border text-text ">
             {/* Main Footer Container */}
             <div className="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
 
@@ -27,16 +27,9 @@ export default function Footer_1() {
                         Solutions
                     </h3>
                     <ul className="space-y-2 text-sm text-muted">
-                        <li><a href="#market" className="hover:text-accent transition-colors">B2B Marketplace</a></li>
-                        <li><a href="#market" className="hover:text-accent transition-colors">B2C Marketplace</a></li>
-                        <li><a href="#analytics" className="hover:text-accent transition-colors">Global Analytics</a></li>
-                        <li><a href="#logistics" className="hover:text-accent transition-colors">Smart Logistics</a></li>
-                        <li>
-                            <a href="#automation" className="hover:text-accent transition-colors inline-flex items-center gap-1.5">
-                                Automation
-                                <span className="bg-info/10 text-info text-[10px] font-bold px-1.5 py-0.5 rounded">New</span>
-                            </a>
-                        </li>
+                        <li><a href="#market" className="hover:text-accent ">B2B Marketplace</a></li>
+                        <li><a href="#analytics" className="hover:text-accent ">Global Analytics</a></li>
+                        <li><a href="#logistics" className="hover:text-accent ">Smart Logistics</a></li>
                     </ul>
                 </div>
 
@@ -46,10 +39,10 @@ export default function Footer_1() {
                         Resources
                     </h3>
                     <ul className="space-y-2 text-sm text-muted">
-                        <li><a href="#docs" className="hover:text-accent transition-colors">Documentation</a></li>
-                        <li><a href="#api" className="hover:text-accent transition-colors">API Reference</a></li>
-                        <li><a href="#guides" className="hover:text-accent transition-colors">Guides & Blueprints</a></li>
-                        <li><a href="#support" className="hover:text-accent transition-colors">Help Center</a></li>
+                        <li><a href="#docs" className="hover:text-accent ">Documentation</a></li>
+                        <li><a href="#api" className="hover:text-accent ">API Reference</a></li>
+                        <li><a href="#guides" className="hover:text-accent ">Guides & Blueprints</a></li>
+                        <li><a href="#support" className="hover:text-accent ">Help Center</a></li>
                     </ul>
                 </div>
 
@@ -65,7 +58,7 @@ export default function Footer_1() {
                         <input
                             type="email"
                             placeholder="Enter business email"
-                            className="bg-bg border border-border text-sm rounded-lg px-3 py-2 w-full text-text placeholder-muted focus:outline-none focus:border-primary transition-colors"
+                            className="bg-bg border border-border text-sm rounded-lg px-3 py-2 w-full text-text placeholder-muted focus:outline-none focus:border-primary "
                         />
                         <button
                             type="submit"
@@ -85,9 +78,9 @@ export default function Footer_1() {
                         &copy; {new Date().getFullYear()} CONB2B Inc. Building the future of enterprise trades.
                     </p>
                     <div className="flex gap-6">
-                        <a href="#privacy" className="hover:text-accent transition-colors">Privacy Policy</a>
-                        <a href="#terms" className="hover:text-accent transition-colors">Terms of Service</a>
-                        <a href="#security" className="hover:text-accent transition-colors">Security Compliance</a>
+                        <a href="#privacy" className="hover:text-accent ">Privacy Policy</a>
+                        <a href="#terms" className="hover:text-accent ">Terms of Service</a>
+                        <a href="#security" className="hover:text-accent ">Security Compliance</a>
                     </div>
                 </div>
             </div>

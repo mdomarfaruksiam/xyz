@@ -91,3 +91,8 @@
     --color-muted: var(--color-muted);
     --color-overlay: var(--color-overlay);
 }
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}

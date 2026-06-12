@@ -1,32 +1,48 @@
-import React, { useContext, useState } from 'react'
-import { authContext } from '../../Contexts/authContext'
+import { Link } from "react-router";
+import Banner from "../../Components/home/Banner";
+import Products from "../../Components/home/Products";
+import Suppliers from "../../Components/home/Suppliers";
 
-function Home() {
-    const { isLoggedIn, setIsLoggedIn } = useContext(authContext)
+export default function Home() {
+    const links = [
+        { name: "Buyer", path: "/" },
+        { name: "Supplier", path: "/features" },
+        { name: "Reseller", path: "/pricing" },
+        { name: "Affilieate marketer", path: "/about" }
+    ];
 
-    const [theme, setTheme] = useState('light');
+    return (
+        <main className="container mx-auto p-2">
+            {/* baners */}
+            <Banner />
 
-    const toggleTheme = () => {
-        const nextTheme = theme === 'light' ? 'dark' : 'light';
-        setTheme(nextTheme);
+            {/* encourage to sign in */}
+            <div className="mt-8 p-4 rounded-lg bg-surface">
+                <div>
+                    <h1 className="text-2xl font-bold text-text text-center mb-4">Bangladesh B2B Business Platform</h1>
+                    <p className="text-md text-text text-center mb-8">Maximize Your Business Potential with Bangladesh B2B Marketplace for Buyers and Suppliers.
+                        Join Free for Effective B2B Networking, Marketing & Trading Options.</p>
+                </div>
+                <div className="flex flex-wrap gap-2 items-center justify-center mt-4">
+                    {links.map((link) => {
+                        return (
+                            <button>
+                                <Link className="block bg-primary hover:bg-accent p-2 rounded-lg whitespace-nowrap font-semibold text-surface hover:text-surface/80"
+                                    to={link.path}
+                                >
+                                    I'm {link.name}
+                                </Link>
+                            </button>
+                        );
+                    })}
+                </div>
+            </div>
 
-        // Updates the HTML tag: <html data-theme="dark">
-        document.documentElement.setAttribute('data-theme', nextTheme);
-    }
+            {/* supliers */}
+            <Suppliers />
 
-    return <>
-        {!isLoggedIn ?
-            <button className="bg-primary text-brand-text py-2 px-4 rounded" onClick={() => setIsLoggedIn(!isLoggedIn)}>logged in</button>
-            :
-            <button onClick={() => setIsLoggedIn(!isLoggedIn)}>logged out</button>
-        }
-        <button
-            onClick={toggleTheme}
-            className="px-4 py-2 font-semibold text-sm bg-primary text-brand-bg rounded-lg shadow-sm"
-        >
-            Toggle Theme
-        </button>
-    </>
+            {/* products */}
+            <Products />
+        </main>
+    );
 }
-
-export default Home

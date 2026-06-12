@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { authContext } from "./Contexts/authContext";
 
 import Home from "./Pages/HomePage/Home";
+import PageNotFound from "./Components/PageNotFound";
 
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
             // { path: 'solutions', element: <SolutionsHub /> },
           ],
         },
+        { path: "*", element: <PageNotFound /> }
       ])} />
     </authContext.Provider>
   );
