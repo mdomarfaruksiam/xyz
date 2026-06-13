@@ -1,91 +1,175 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router'
-
-import { RiMenu3Fill } from "react-icons/ri"
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router';
+import { RiMenu3Fill, RiCloseLine } from "react-icons/ri";
 import { IoSearch } from "react-icons/io5";
-
-
 import Search from './Search';
 
-
 export default function Nav_1() {
-
-
-    const [menuOpen, setMenuOpen] = useState(false)
-    const [searchOpen, setSearchOpen] = useState(false)
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
+    const location = useLocation();
 
     const links = [
         { name: "Home", path: "/" },
-        { name: "Features", path: "/features" },
+        { name: "Products", path: "/products" },
         { name: "Pricing", path: "/pricing" },
         { name: "About", path: "/about" },
         { name: "Contact", path: "/contact" }
     ];
 
+    // Safely handles backdrop component state closures
+    const handleOutsideClickClose = () => {
+        if (menuOpen) setMenuOpen(false);
+        if (searchOpen) setSearchOpen(false);
+    };
+
     return (
-        <header className="w-full bg-surface border-b border-border">
-            <nav className="container mx-auto flex flex-wrap justify-between items-center p-2">
+        <header
+            onClick={handleOutsideClickClose}
+            className="w-full bg-surface border-b border-border sticky top-0 z-50 backdrop-blur-md"
+        >
+            {/* Main Navigation Track Container */}
+            <nav
+                className="container mx-auto flex justify-between items-center px-4 py-3.5"
+                onClick={(e) => e.stopPropagation()} // Prevents navbar layout clicks from auto-closing itself
+            >
+                {/* Brand Logo - Interlinked into theme variables */}
+                <Link to="/" className="flex items-center gap-2 group">
+                    <span className="text-xl font-extrabold tracking-tight text-primary transition-colors group-hover:text-accent">
+                        XYZ<span className="text-text font-semibold ml-1">B2B</span>
+                    </span>
+                </Link>
 
-                {/* column1 */}
-                <h1 className="text-2xl font-black tracking-tight text-primary whitespace-nowrap">
-                    XYZ B2B
-                </h1>
+                {/* Center: Main Navigation Links (Desktop) */}
+                <ul className="hidden lg:flex items-center gap-8 font-medium text-secondary text-sm xl:text-base">
+                    {links.map((link) => {
+                        const isActive = location.pathname === link.path;
+                        return (
+                            <li key={link.path}>
+                                <Link
+                                    to={link.path}
+                                    className={`transition-colors duration-200 hover:text-primary relative py-1 block ${isActive ? "text-primary font-bold" : "text-text/90"
+                                        }`}
+                                >
+                                    {link.name}
+                                    {isActive && (
+                                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary rounded-full" />
+                                    )}
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </ul>
 
-                {/* column 2 */}
-                <div className="flex items-center gap-2">
+                {/* Right Actions Block */}
+                <div className="flex items-center gap-3">
 
-                    <div
-                        onClick={() => setSearchOpen(!searchOpen)}
-                        className={`overflow-hidden ${searchOpen ? 'max-h-0' : 'max-h-50'} md:hidden`}>
-                        <IoSearch className='w-9 h-9 p-1 text-info border-2 rounded-md' />
-                    </div>
-
-                    {/* search engine for big devices*/}
-                    <div className='hidden sm:flex w-full sm:w-auto mr-4'>
+                    {/* Embedded Search Box (Desktop) */}
+                    <div className="hidden md:block w-64 xl:w-80">
                         <Search />
                     </div>
 
-                    {/* links */}
-                    <div className="flex flex-row-reverse lg:flex-row items-center gap-4 lg:gap-8 relative">
+                    {/* Mobile Search Icon Activation Trigger */}
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setSearchOpen(!searchOpen);
+                            if (menuOpen) setMenuOpen(false);
+                        }}
+                        aria-label="Toggle Search Grid"
+                        className="p-2 text-text hover:text-primary hover:bg-bg rounded-lg md:hidden transition-colors"
+                    >
+                        <IoSearch className="w-5 h-5" />
+                    </button>
 
-                        {/* manu */}
-                        <div onClick={() => setMenuOpen(!menuOpen)}>
-                            <RiMenu3Fill className="lg:hidden w-9 h-9 text-primary hover:text-success cursor-pointer group border-2 rounded-md p-0.5" />
-                        </div>
-
-                        {/* links */}
-                        <ul className={`flex lg:items-center flex-col lg:flex-row gap-4 absolute lg:static top-11 bg-bg lg:bg-transparent w-60 lg:w-auto lg:max-h-500 ${menuOpen ? 'pt-4 border max-h-150' : 'max-h-0'} lg:max-h-auto font-bold sm:font-semibold text-secondary lg:border-none border-border rounded-md lg:p-0 overflow-hidden transition-max-h duration-500 z-11 shadow-lg`}>
-                            {links.map((link) => {
-                                return (
-                                    <li
-                                        key={link.path}
-                                    >
-                                        <Link
-                                            className="border-b-2 border-border lg:border-none hover:text-text py-1 px-4 lg:p-0 block text-left"
-                                            to={link.path}
-                                        >
-                                            {link.name}
-                                        </Link>
-                                    </li>
-                                );
-                            })}
-                            <div className="flex items-center flex-col lg:flex-row p-2 px-4 mt-6 border-t lg:border-none border-info lg:space-y-0 lg:pt-0 lg:mt-0 lg:flex gap-4">
-                                <li className="w-full">
-                                    <Link className="hover:text-accent/50 text-accent whitespace-nowrap bg-border lg:bg-transparent border lg:border-none border-success text-center rounded-sm lg:rounded-0  block w-full font-bold p-1" to="/signin">Sign In</Link>
-                                </li>
-                                <li className="w-full">
-                                    <Link className="bg-accent hover:bg-primary text-border hover:text-text px-4 py-2 rounded-md whitespace-nowrap text-center border border-border block w-full lg:bg-none font-bold p-1" to="/signup">Get Started</Link>
-                                </li>
-                            </div>
-                        </ul>
+                    {/* Authentication Action Directives (Desktop Layout) */}
+                    <div className="hidden lg:flex items-center gap-3 text-sm font-semibold">
+                        <Link
+                            to="/signin"
+                            className="text-text hover:text-primary px-4 py-2 transition-colors"
+                        >
+                            Sign In
+                        </Link>
+                        <Link
+                            to="/signup"
+                            className="bg-primary hover:bg-accent text-bg px-4 py-2 rounded-lg shadow-sm transition-all transform active:scale-95"
+                        >
+                            Get Started
+                        </Link>
                     </div>
-                </div>
 
-                {/* search engine for mobile */}
-                <div className={`overflow-hidden w-full ${searchOpen ? 'max-h-50 mt-3' : 'max-h-0'} transition-max-h duration-150`}>
-                    <Search searchOpen={searchOpen} setSearchOpen={setSearchOpen} />
+
+
+                    {/* Hamburger Menu Toggle Icon Button (Mobile/Tablet viewports) */}
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setMenuOpen(!menuOpen);
+                            if (searchOpen) setSearchOpen(false);
+                        }}
+                        aria-label="Toggle Navigation Drawer"
+                        className="lg:hidden p-2 text-text hover:bg-bg rounded-lg transition-colors"
+                    >
+                        {menuOpen ? <RiCloseLine className="w-6 h-6" /> : <RiMenu3Fill className="w-6 h-6" />}
+                    </button>
                 </div>
             </nav>
+
+            {/* Mobile Dropdown Menu Drawer Section */}
+            <div
+                onClick={(e) => e.stopPropagation()}
+                className={`lg:hidden fixed inset-x-0 top-[57px] bg-surface border-b border-border shadow-xl transition-all duration-300 transform origin-top ${menuOpen
+                    ? "opacity-100 scale-y-100 visible"
+                    : "opacity-0 scale-y-95 pointer-events-none invisible"
+                    }`}
+            >
+                <div className="p-4 space-y-4">
+                    <ul className="space-y-1 font-medium text-text">
+                        {links.map((link) => {
+                            const isActive = location.pathname === link.path;
+                            return (
+                                <li key={link.path}>
+                                    <Link
+                                        onClick={() => setMenuOpen(false)}
+                                        to={link.path}
+                                        className={`block p-2.5 rounded-lg hover:bg-bg transition-colors ${isActive ? "bg-bg text-primary font-bold" : "text-text"
+                                            }`}
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+
+                    {/* Mobile Dynamic Auth Trigger Block */}
+                    <div className="grid grid-cols-2 gap-3 pt-4 border-t border-border">
+                        <Link
+                            onClick={() => setMenuOpen(false)}
+                            to="/signin"
+                            className="w-full text-center font-semibold text-text bg-bg hover:bg-border py-2.5 rounded-lg text-sm border border-border transition-colors"
+                        >
+                            Sign In
+                        </Link>
+                        <Link
+                            onClick={() => setMenuOpen(false)}
+                            to="/signup"
+                            className="w-full text-center font-semibold text-bg bg-primary hover:bg-accent py-2.5 rounded-lg text-sm shadow-sm transition-colors"
+                        >
+                            Get Started
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
+            {/* Expandable Fluid Mobile Search Panel Dropdown Wrapper */}
+            <div
+                onClick={(e) => e.stopPropagation()}
+                className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-surface ${searchOpen ? 'max-h-16 border-b border-border p-3' : 'max-h-0'
+                    }`}
+            >
+                <Search searchOpen={searchOpen} setSearchOpen={setSearchOpen} />
+            </div>
         </header>
-    )
+    );
 }

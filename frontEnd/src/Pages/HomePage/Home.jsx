@@ -4,45 +4,84 @@ import Products from "../../Components/home/Products";
 import Suppliers from "../../Components/home/Suppliers";
 
 export default function Home() {
-    const links = [
-        { name: "Buyer", path: "/" },
-        { name: "Supplier", path: "/features" },
-        { name: "Reseller", path: "/pricing" },
-        { name: "Affilieate marketer", path: "/about" }
+    // Dynamic routing configured for the Multi-Step signup form built previously
+    const userRoles = [
+        { name: "Buyer", path: "/signup?role=buyer" },
+        { name: "Supplier", path: "/signup?role=supplier" },
+        { name: "Reseller", path: "/signup?role=reseller" },
+        { name: "Affiliate Marketer", path: "/signup?role=affiliate" }
     ];
 
     return (
-        <main className="container mx-auto p-2">
-            {/* baners */}
+        <main className="container mx-auto px-4 py-6 space-y-12">
+            {/* Banner Slider Hero Section */}
             <Banner />
 
-            {/* encourage to sign in */}
-            <div className="mt-8 p-4 rounded-lg bg-surface">
-                <div>
-                    <h1 className="text-2xl font-bold text-text text-center mb-4">Bangladesh B2B Business Platform</h1>
-                    <p className="text-md text-text text-center mb-8">Maximize Your Business Potential with Bangladesh B2B Marketplace for Buyers and Suppliers.
-                        Join Free for Effective B2B Networking, Marketing & Trading Options.</p>
-                </div>
-                <div className="flex flex-wrap gap-2 items-center justify-center mt-4">
-                    {links.map((link) => {
-                        return (
-                            <button>
-                                <Link className="block bg-primary hover:bg-accent p-2 rounded-lg whitespace-nowrap font-semibold text-surface hover:text-surface/80"
-                                    to={link.path}
-                                >
-                                    I'm {link.name}
-                                </Link>
-                            </button>
-                        );
-                    })}
-                </div>
-            </div>
+            {/* Business Segment Selection & CTA Block */}
+            <section className="p-8 py-16 md:py-24 rounded-2xl bg-surface border border-neutral-200/60 shadow-sm relative overflow-hidden">
+                {/* Subtle Decorative Background Graphic Elements */}
+                <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
-            {/* supliers */}
-            <Suppliers />
+                <div className="relative z-10 max-w-3xl mx-auto text-center">
+                    <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-neutral-900 mb-4">
+                        XYZ B2B Platform
+                    </h1>
+                    <p className="text-base md:text-xl text-neutral-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+                        Maximize your business potential with the XYZ B2B marketplace.
+                        Join our digital ecosystem for verified global networking, targeted marketing, and seamless bulk trading.
+                    </p>
 
-            {/* products */}
-            <Products />
+                    {/* Role Selection Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                        {userRoles.map((role, index) => (
+                            <Link
+                                key={index}
+                                to={role.path}
+                                className="block w-full bg-primary hover:bg-accent font-semibold text-surface py-3.5 px-6 rounded-xl shadow-sm transition-all duration-200 transform hover:-translate-y-0.5 active:scale-95 text-center text-sm md:text-base"
+                            >
+                                I'm a {role.name}
+                            </Link>
+                        ))}
+                    </div>
+
+                    {/* Secondary Access Line */}
+                    <div className="mt-8 text-sm text-neutral-500">
+                        Already have a verified workspace?{" "}
+                        <Link to="/signin" className="text-primary font-semibold hover:underline">
+                            Sign In
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* Suppliers Showcase Directory */}
+            <section className="pt-4">
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-6">
+                    <div>
+                        <h2 className="text-2xl font-bold text-neutral-900 tracking-tight">Verified Suppliers</h2>
+                        <p className="text-sm text-neutral-500 mt-1">Connect directly with certified manufacturers and verified trade partners.</p>
+                    </div>
+                    <Link to="/suppliers" className="text-sm font-semibold text-primary hover:underline mt-2 md:mt-0">
+                        View All Suppliers →
+                    </Link>
+                </div>
+                <Suppliers />
+            </section>
+
+            {/* Products Directory Grid */}
+            <section className="pt-4">
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-6">
+                    <div>
+                        <h2 className="text-2xl font-bold text-neutral-900 tracking-tight">Trending Products</h2>
+                        <p className="text-sm text-neutral-500 mt-1">Explore bulk inventory listings fresh from global factories.</p>
+                    </div>
+                    <Link to="/products" className="text-sm font-semibold text-primary hover:underline mt-2 md:mt-0">
+                        Browse Catalog →
+                    </Link>
+                </div>
+                <Products />
+            </section>
         </main>
     );
 }

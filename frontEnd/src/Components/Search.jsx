@@ -1,32 +1,68 @@
-import React from 'react'
-
+import React, { useState } from 'react';
 import { IoSearch } from "react-icons/io5";
 import { FaRegImages } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 
-
-
 export default function Search({ searchOpen, setSearchOpen }) {
+    const [query, setQuery] = useState("");
+
+    const handleClear = () => {
+        setQuery("");
+    };
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (!query.trim()) return;
+        console.log("Executing B2B search for:", query);
+        // Implement your search/filter redirect logic here
+    };
+
     return (
-        <div className="relative w-full flex">
+        <form
+            onSubmit={handleSearch}
+            className="relative w-full flex items-center bg-white rounded-lg border border-neutral-300 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all duration-200 shadow-sm"
+        >
+            {/* Input Field */}
             <input
                 type="text"
-                placeholder="Search..."
-                className="bg-surface border-2 border-r-0 border-border focus:border-border/50 focus:outline-none px-2 py-1 rounded-l-lg w-full"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search products, suppliers, or categories..."
+                className="bg-transparent text-text text-sm placeholder-neutral-400 pl-4 pr-10 py-2.5 w-full focus:outline-none"
             />
 
+            {/* Actions Container (Clear & Image Search) */}
+            <div className="flex items-center gap-1.5 px-2 text-neutral-400">
+                {/* Clear Input Button (Only displays when text is present) */}
+                {query && (
+                    <button
+                        type="button"
+                        onClick={handleClear}
+                        className="p-1 rounded-full hover:bg-neutral-100 hover:text-neutral-600 transition-colors"
+                        title="Clear search"
+                    >
+                        <RxCross2 className="w-4 h-4" />
+                    </button>
+                )}
+
+                {/* Image Search / Industrial Visual Search Button */}
+                <button
+                    type="button"
+                    className="p-1.5 rounded-md hover:bg-neutral-100 hover:text-primary transition-colors"
+                    title="Search by image"
+                >
+                    <FaRegImages className="w-4 h-4" />
+                </button>
+            </div>
+
+            {/* Primary Search Submission Button */}
             <button
-                onClick={() => setSearchOpen(!searchOpen)} className="bg-surface hover:bg-surface/20 text-accent hover:text-accent/60 px-2 py-2 border-2 border-r-0 border-border hover:border-border/50 ">
-                <RxCross2 />
+                type="submit"
+                className="bg-primary hover:bg-accent text-surface px-5 py-2.5 rounded-r-[7px] font-medium transition-colors duration-150 flex items-center justify-center self-stretch self-center border-l border-neutral-200"
+                aria-label="Submit Search"
+            >
+                <IoSearch className="w-5 h-5" />
             </button>
-
-            <button className="bg-border hover:bg-border/20 text-accent hover:text-accent/50 border-2 border-primary hover:border-accent ">
-                <FaRegImages className='w-15' />
-            </button>
-
-            <button className="bg-primary hover:bg-accent text-border hover:text-border/50 px-4 py-2 rounded-r-lg border border-l-0 border-accent hover:border-primary ">
-                <IoSearch className='w-5 h-5' />
-            </button>
-        </div>
-    )
+        </form>
+    );
 }

@@ -5,8 +5,9 @@ import image_1 from '../../images/image_1.png'
 export default function Products() {
     return (
 
-        <div>
-            <h2 className="font-semibold text-xl text-primary underline line-clamp-1">Products From Suppliers</h2>
+        <div className='mt-10'>
+            <h2 className="font-semibold text-xl md:text-4xl text-text line-clamp-1">Products From Suppliers</h2>
+            <div className='border mt-2 border-border'></div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-4">
                 {/* add product from here this is the card */}
                 <div className="bg-surface border border-border rounded-lg p-2">
