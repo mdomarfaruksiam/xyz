@@ -18,7 +18,7 @@ export default function SignIn() {
     };
 
     return (
-        <div className="min-h-[80vh] flex items-center justify-center bg-bg px-4 py-12">
+        <div className="flex items-center justify-center bg-bg px-4 py-12">
             {/* Main Card Element - Controlled by var(--color-surface) and var(--color-border) */}
             <div className="max-w-md w-full bg-surface p-8 rounded-2xl shadow-xl border border-border transition-all duration-300">
 

@@ -14,52 +14,54 @@ export default function Search({ searchOpen, setSearchOpen }) {
         e.preventDefault();
         if (!query.trim()) return;
         console.log("Executing B2B search for:", query);
-        // Implement your search/filter redirect logic here
+
+        // Auto-collapse mobile search drawer panels upon successful query fire
+        if (setSearchOpen) setSearchOpen(false);
     };
 
     return (
         <form
             onSubmit={handleSearch}
-            className="relative w-full flex items-center bg-white rounded-lg border border-neutral-300 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all duration-200 shadow-sm"
+            className="relative w-full flex items-center bg-bg rounded-lg border border-border focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all duration-200 shadow-sm"
         >
-            {/* Input Field */}
+            {/* Input Field - Background set to transparent to absorb the parent token smoothly */}
             <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search products, suppliers, or categories..."
-                className="bg-transparent text-text text-sm placeholder-neutral-400 pl-4 pr-10 py-2.5 w-full focus:outline-none"
+                className="bg-transparent text-text text-sm placeholder-muted pl-4 pr-20 py-2.5 w-full focus:outline-none"
             />
 
-            {/* Actions Container (Clear & Image Search) */}
-            <div className="flex items-center gap-1.5 px-2 text-neutral-400">
-                {/* Clear Input Button (Only displays when text is present) */}
+            {/* Actions Container (Clear & Image Search) - Uses var(--color-muted) layout elements */}
+            <div className="absolute right-14 flex items-center gap-1 text-muted">
+                {/* Clear Input Button (Reveals contextually when characters exist) */}
                 {query && (
                     <button
                         type="button"
                         onClick={handleClear}
-                        className="p-1 rounded-full hover:bg-neutral-100 hover:text-neutral-600 transition-colors"
+                        className="p-1 rounded-full hover:bg-surface hover:text-text transition-colors"
                         title="Clear search"
                     >
-                        <RxCross2 className="w-4 h-4" />
+                        <RxCross2 className="w-3.5 h-3.5" />
                     </button>
                 )}
 
-                {/* Image Search / Industrial Visual Search Button */}
+                {/* Image Search / Visual Sourcing Upload Trigger */}
                 <button
                     type="button"
-                    className="p-1.5 rounded-md hover:bg-neutral-100 hover:text-primary transition-colors"
+                    className="p-3 rounded-md hover:bg-surface hover:text-primary transition-colors"
                     title="Search by image"
                 >
                     <FaRegImages className="w-4 h-4" />
                 </button>
             </div>
 
-            {/* Primary Search Submission Button */}
+            {/* Primary Search Button - Scaled down to match Tailwind v4 inheritance seamlessly */}
             <button
                 type="submit"
-                className="bg-primary hover:bg-accent text-surface px-5 py-2.5 rounded-r-[7px] font-medium transition-colors duration-150 flex items-center justify-center self-stretch self-center border-l border-neutral-200"
-                aria-label="Submit Search"
+                className="bg-primary hover:bg-accent text-bg px-5 py-2.5 rounded-r-lg font-medium transition-colors duration-150 flex items-center justify-center self-stretch border-l border-border"
+                aria-label="Submit Search Query"
             >
                 <IoSearch className="w-5 h-5" />
             </button>

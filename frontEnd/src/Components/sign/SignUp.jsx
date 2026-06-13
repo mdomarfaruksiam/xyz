@@ -51,7 +51,7 @@ export default function SignUp() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-bg px-4 py-12">
+        <div className="flex items-center justify-center bg-bg px-4 py-12">
             {/* Form Card Frame container utilizes var(--color-surface) and var(--color-border) */}
             <div className="max-w-2xl w-full bg-surface p-8 rounded-2xl shadow-xl border border-border transition-all duration-300">
 
@@ -103,7 +103,7 @@ export default function SignUp() {
                                 <div>
                                     <label className="block text-sm font-semibold text-secondary mb-2">I am signing up as a</label>
                                     <select
-                                        className="w-full p-3 rounded-lg border border-border bg-bg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-text capitalize transition-all"
+                                        className="w-full p-3 rounded-lg border-2 border-red bg-bg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 text-text capitalize transition-all"
                                         value={formData.role}
                                         onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                                     >
