@@ -53,23 +53,6 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Directory Showcase Segment 01: Supplier Network */}
-            <section className="pt-4">
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-2">
-                    <div>
-                        <h2 className="text-2xl font-bold text-text tracking-tight">Verified Suppliers</h2>
-                        <p className="text-sm text-muted mt-1">Connect directly with certified manufacturers and verified trade partners.</p>
-                    </div>
-                    <Link to="/suppliers" className="text-sm font-semibold text-primary hover:underline whitespace-nowrap mt-2 md:mt-0">
-                        View All Suppliers →
-                    </Link>
-                </div>
-                <Suppliers />
-            </section>
-
-            {/* Promotional Banner Carousel Engine Component */}
-            <Banner />
-
             {/* Directory Showcase Segment 02: Catalog Index Listing */}
             <section className="pt-4">
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-2">
@@ -82,6 +65,22 @@ export default function Home() {
                     </Link>
                 </div>
                 <Products />
+            </section>
+            {/* Promotional Banner Carousel Engine Component */}
+            <Banner />
+
+            {/* Directory Showcase Segment 01: Supplier Network */}
+            <section className="pt-4">
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-2">
+                    <div>
+                        <h2 className="text-2xl font-bold text-text tracking-tight">Verified Suppliers</h2>
+                        <p className="text-sm text-muted mt-1">Connect directly with certified manufacturers and verified trade partners.</p>
+                    </div>
+                    <Link to="/suppliers" className="text-sm font-semibold text-primary hover:underline whitespace-nowrap mt-2 md:mt-0">
+                        View All Suppliers →
+                    </Link>
+                </div>
+                <Suppliers />
             </section>
         </main>
     );
