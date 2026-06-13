@@ -9,6 +9,7 @@ import SignIn from "./Components/sign/SignIn";
 import Dashboard from "./Pages/DashBoard/Dashboard";
 import About from "./Components/about/About";
 import SignUp from "./Components/sign/SignUp";
+import Products from "./Pages/HomePage/Products";
 
 
 export default function App() {
@@ -30,6 +31,10 @@ export default function App() {
             }, {
               path: 'signup',
               element: isLoggedIn ? <Navigate to='/' replace /> : <SignUp />
+            },
+            {
+              path: 'products',
+              element: isLoggedIn ? <Navigate to='/' replace /> : <Products />
             },
             { path: 'about', element: <About /> }
           ],

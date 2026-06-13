@@ -25,10 +25,6 @@ export default function Home() {
                     <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-text mb-4">
                         XYZ B2B Platform
                     </h1>
-                    <p className="text-base md:text-xl text-muted mb-10 max-w-2xl mx-auto leading-relaxed">
-                        Maximize your business potential with the XYZ B2B marketplace.
-                        Join our digital ecosystem for verified global networking, targeted marketing, and seamless bulk trading.
-                    </p>
 
                     {/* Role Selection Execution Grid Block */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">

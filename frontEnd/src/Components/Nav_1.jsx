@@ -26,7 +26,7 @@ export default function Nav_1() {
     return (
         <header
             onClick={handleOutsideClickClose}
-            className="w-full bg-surface border-b border-border sticky top-0 z-50 backdrop-blur-md"
+            className="w-full bg-surface border-b border-border lg:sticky top-0 z-50 backdrop-blur-md"
         >
             {/* Main Navigation Track Container */}
             <nav

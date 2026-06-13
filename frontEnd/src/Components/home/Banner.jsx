@@ -72,8 +72,8 @@ export default function Banner() {
                         onClick={() => setCurrent(index)}
                         aria-label={`Go to slide ${index + 1}`}
                         className={`transition-all duration-300 rounded-full ${current === index
-                                ? "w-8 h-2 bg-white"
-                                : "w-2 h-2 bg-white/60 hover:bg-white"
+                            ? "w-8 h-2 bg-white"
+                            : "w-2 h-2 bg-white/60 hover:bg-white"
                             }`}
                     />
                 ))}
