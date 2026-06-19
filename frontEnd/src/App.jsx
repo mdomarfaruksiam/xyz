@@ -10,6 +10,7 @@ import Dashboard from "./Pages/DashBoard/Dashboard";
 import About from "./Components/about/About";
 import SignUp from "./Components/sign/SignUp";
 import Products from "./Pages/HomePage/Products";
+import Pricing from "./Components/pricing/Pricing";
 
 
 export default function App() {
@@ -36,7 +37,8 @@ export default function App() {
               path: 'products',
               element: isLoggedIn ? <Navigate to='/' replace /> : <Products />
             },
-            { path: 'about', element: <About /> }
+            { path: 'about', element: <About /> },
+            { path: 'pricing', element: <Pricing /> },
           ],
         },
         { path: "*", element: <PageNotFound /> }

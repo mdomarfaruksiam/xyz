@@ -1,10 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router';
 import { RiMenu3Fill, RiCloseLine } from "react-icons/ri";
 import { IoSearch } from "react-icons/io5";
 import Search from './Search';
 
+// remove this after development
+import { authContext } from '../Contexts/authContext'
+
 export default function Nav_1() {
+
+    // remove this after development
+    const { isLoggedIn, setIsLoggedIn } = useContext(authContext)
+
+    const [theme, setTheme] = useState('light');
+
+    const toggleTheme = () => {
+        const nextTheme = theme === 'light' ? 'dark' : 'light';
+        setTheme(nextTheme);
+
+        // Updates the HTML tag: <html data-theme="dark">
+        document.documentElement.setAttribute('data-theme', nextTheme);
+    }
+
+
+
+
+
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const location = useLocation();
@@ -158,6 +179,20 @@ export default function Nav_1() {
                         >
                             Get Started
                         </Link>
+                    </div>
+                    {/* remove this div after development */}
+                    <div className='flex justify-between gap-4'>
+                        {!isLoggedIn ?
+                            <button className="bg-primary text-brand-text py-2 px-4 rounded" onClick={() => setIsLoggedIn(!isLoggedIn)}>logged in</button>
+                            :
+                            <button onClick={() => setIsLoggedIn(!isLoggedIn)}>logged out</button>
+                        }
+                        <button
+                            onClick={toggleTheme}
+                            className="px-4 py-2 font-semibold text-sm bg-primary text-brand-bg rounded-lg shadow-sm"
+                        >
+                            Toggle Theme
+                        </button>
                     </div>
                 </div>
             </div>
