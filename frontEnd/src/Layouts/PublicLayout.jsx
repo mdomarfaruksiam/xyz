@@ -12,7 +12,7 @@ export default function PublicLayout() {
     const links = [
         { name: "Home", path: "/", IconOutline: RiHome5Line, IconSolid: RiHome5Fill },
         { name: "Products", path: "/products", IconOutline: RiShoppingBag4Line, IconSolid: RiShoppingBag4Fill },
-        { name: "/pricing", path: "/pricing", IconOutline: RiPriceTag3Line, IconSolid: RiPriceTag3Fill },
+        { name: "Pricing", path: "/pricing", IconOutline: RiPriceTag3Line, IconSolid: RiPriceTag3Fill },
         { name: "About", path: "/about", IconOutline: RiInformationLine, IconSolid: RiInformationFill },
         { name: "Contact", path: "/contact", IconOutline: RiContactsLine, IconSolid: RiContactsFill }
     ];

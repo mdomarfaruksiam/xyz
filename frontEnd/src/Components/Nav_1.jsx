@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router';
 import { RiMenu3Fill, RiCloseLine } from "react-icons/ri";
 import { IoSearch } from "react-icons/io5";
+import { RiHome5Line, RiHome5Fill, RiShoppingBag4Line, RiShoppingBag4Fill, RiPriceTag3Line, RiPriceTag3Fill, RiInformationLine, RiInformationFill, RiContactsLine, RiContactsFill } from "react-icons/ri";
 import Search from './Search';
 
 // remove this after development
@@ -31,11 +32,11 @@ export default function Nav_1() {
     const location = useLocation();
 
     const links = [
-        { name: "Home", path: "/" },
-        { name: "Products", path: "/products" },
-        { name: "Pricing", path: "/pricing" },
-        { name: "About", path: "/about" },
-        { name: "Contact", path: "/contact" }
+        { name: "Home", path: "/", IconOutline: RiHome5Line, IconSolid: RiHome5Fill },
+        { name: "Products", path: "/products", IconOutline: RiShoppingBag4Line, IconSolid: RiShoppingBag4Fill },
+        { name: "Pricing", path: "/pricing", IconOutline: RiPriceTag3Line, IconSolid: RiPriceTag3Fill },
+        { name: "About", path: "/about", IconOutline: RiInformationLine, IconSolid: RiInformationFill },
+        { name: "Contact", path: "/contact", IconOutline: RiContactsLine, IconSolid: RiContactsFill }
     ];
 
     // Safely handles backdrop component state closures
@@ -139,7 +140,7 @@ export default function Nav_1() {
             {/* Mobile Dropdown Menu Drawer Section */}
             <div
                 onClick={(e) => e.stopPropagation()}
-                className={`lg:hidden fixed inset-x-0 top-[57px] bg-surface border-b border-border shadow-xl transition-all duration-300 transform origin-top ${menuOpen
+                className={`lg:hidden fixed inset-x-0 top-14 bg-surface border-b border-border shadow-xl transition-all duration-300 transform origin-top ${menuOpen
                     ? "opacity-100 scale-y-100 visible"
                     : "opacity-0 scale-y-95 pointer-events-none invisible"
                     }`}
@@ -148,15 +149,17 @@ export default function Nav_1() {
                     <ul className="space-y-1 font-medium text-text">
                         {links.map((link) => {
                             const isActive = location.pathname === link.path;
+                            const Icon = isActive ? link.IconSolid : link.IconOutline;
                             return (
                                 <li key={link.path}>
                                     <Link
                                         onClick={() => setMenuOpen(false)}
                                         to={link.path}
-                                        className={`block p-2.5 rounded-lg hover:bg-bg transition-colors ${isActive ? "bg-bg text-primary font-bold" : "text-text"
+                                        className={`flex gap-2 p-2.5 rounded-lg hover:bg-bg transition-colors ${isActive ? "bg-bg text-primary font-bold" : "text-text"
                                             }`}
                                     >
-                                        {link.name}
+                                        <Icon className={`w-5 h-5 ${isActive ? "text-primary" : "text-muted"}`} />
+                                        <span>{link.name}</span>
                                     </Link>
                                 </li>
                             );

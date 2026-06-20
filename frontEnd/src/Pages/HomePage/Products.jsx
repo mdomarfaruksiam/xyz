@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router'; // 1. Added router engine hook
 import { BiCategory } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
 
@@ -6,10 +7,19 @@ import Banner from '../../Components/home/Banner';
 import ProductCard from '../../Components/products/ProductCard';
 import ProductCategory from '../../Components/products/ProductCategory';
 
+// 2. Exact mock dataset to populate into your custom view structure
+const MOCK_ITEMS_ARRAY = [
+    { id: '1', name: 'Premium Cloud Server Rack v4', category: 'Hardware', price: '2,499', sku: 'HW-CR4-092', description: 'Enterprise-grade architecture configured for heavy deep learning, high-density computing clusters, and distributed cloud database deployments.', specs: ['256GB ECC DDR5 RAM', '2x AMD EPYC 64-Core Processors', 'Redundant 1200W Hot-Swap Power Supplies'] },
+    { id: '2', name: 'Quantum Encryption Network Hub', category: 'Networking', price: '1,850', sku: 'NW-QEH-881', description: 'Next-generation fiber layer optimization module supporting hardware-level cryptographic handshakes and ultra-secure nodes.', specs: ['Quantum Key Distribution Ready', '8x 100GbE QSFP28 Ports', 'Ultra-low <10ns Latency'] },
+    { id: '3', name: 'SaaS Core API Infrastructure Key', category: 'Software', price: '899', sku: 'SW-API-CORE', description: 'Annual pipeline access clearing 50M concurrent endpoints with structured telemetry logging metrics.', specs: ['REST / GraphQL Compilers', 'Zero-Knowledge Tokens', 'Real-time Datadog Streams'] },
+    { id: '4', name: 'Managed Kubernetes DevOps Cluster', category: 'Software', price: '1,200', sku: 'SW-K8S-DEVOPS', description: 'Fully scalable execution sandbox orchestration environment complete with integrated telemetry stacks.', specs: ['Automated Node Scaling Matrix', 'ArgoCD GitOps Pre-configured', 'Calico Network Policy Mesh'] }
+];
+
 export default function Products() {
-    const productItems = Array.from({ length: 7 });
-    // State management hook to control mobile drawer panel visibility
+    // 3. Map through real data instead of empty stubs
+    const productItems = MOCK_ITEMS_ARRAY;
     const [categoryOpen, setCategoryOpen] = useState(false);
+    const navigate = useNavigate(); // 4. Instantiated navigation framework
 
     return (
         <main className="container mx-auto px-4 py-6 space-y-8 bg-bg text-text relative">
@@ -73,9 +83,16 @@ export default function Products() {
                     )}
 
                     {/* Right Stream: Dynamic Product Cards Stack */}
+                    {/* RESTORED EXACT CSS DESIGN: kept as flex flex-col gap-4 w-full min-w-0 */}
                     <div className="flex flex-col gap-4 w-full min-w-0">
-                        {productItems.map((_, index) => (
-                            <ProductCard key={index} />
+                        {productItems.map((product) => (
+                            <div
+                                key={product.id}
+                                onClick={() => navigate(`/product/${product.id}`, { state: { product } })}
+                                className="cursor-pointer"
+                            >
+                                <ProductCard item={product} />
+                            </div>
                         ))}
                     </div>
 
