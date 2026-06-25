@@ -11,7 +11,7 @@ need to change images of suppliers from
 
 
 https://github.com/mdomarfaruksiam/xyz/blob/main/frontEnd/README.md
-
+https://xyzb2b.netlify.app
 
 
 // import React, { useContext, useState } from 'react'

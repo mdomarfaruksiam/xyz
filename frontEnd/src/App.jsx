@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router";
-
 import { useState } from "react";
 import { authContext } from "./Contexts/authContext";
 
@@ -14,11 +13,10 @@ import Pricing from "./Components/pricing/Pricing";
 import Contact from "./Components/contact/Contact";
 import PublicLayout from "./Layouts/PublicLayout";
 import ProtectedLayout from "./Layouts/ProtectedLayout";
-import Product from "./Pages/HomePage/Product";
-
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <authContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
       <RouterProvider router={createBrowserRouter([
@@ -29,22 +27,31 @@ export default function App() {
             {
               index: true,
               element: isLoggedIn ? <Dashboard /> : <Home />
-            }, {
+            },
+            {
               path: 'signin',
               element: isLoggedIn ? <Navigate to='/' replace /> : <SignIn />
-            }, {
+            },
+            {
               path: 'signup',
               element: isLoggedIn ? <Navigate to='/' replace /> : <SignUp />
-            }, {
+            },
+            {
               path: 'products',
               element: isLoggedIn ? <Navigate to='/' replace /> : <Products />
-            }, {
-              path: 'product/:id',
-              element: isLoggedIn ? <Navigate to='/' replace /> : <Product />
             },
-            { path: 'about', element: <About /> },
-            { path: 'pricing', element: <Pricing /> },
-            { path: 'contact', element: <Contact /> },
+            {
+              path: 'about',
+              element: <About />
+            },
+            {
+              path: 'pricing',
+              element: <Pricing />
+            },
+            {
+              path: 'contact',
+              element: <Contact />
+            },
           ],
         },
         { path: "*", element: <PageNotFound /> }

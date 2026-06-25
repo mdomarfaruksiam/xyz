@@ -2,11 +2,11 @@ import React from 'react'
 
 import image_1 from '../../images/image_1.png'
 
-export default function Products() {
+export default function SupliersProducts() {
     return (
 
-        <div className='mt-10'>
-            <h2 className="font-semibold text-xl md:text-4xl text-text line-clamp-1">Products From Suppliers</h2>
+        <div className='mt-5 md:mt-10'>
+            <h1>Suppliers Products</h1>
             <div className='border mt-2 border-border'></div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-4">
                 {/* add product from here this is the card */}
@@ -18,9 +18,9 @@ export default function Products() {
                             <h4 className="font-medium text-secondary">Electronics & electricle</h4>
                         </div>
                     </div>
-                    <div className="flex gap-2 pt-8">
+                    <div className="flex gap-2 pt-4 md:pt-8">
                         <div className="flex flex-col justify-between gap-2">
-                            <p className="line-clamp-4 overflow-hidden text-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque obcaecati unde facilis quidem vero! Nobis quisquam alias ad unde rerum.</p>
+                            <p className="line-clamp-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque obcaecati unde facilis quidem vero! Nobis quisquam alias ad unde rerum.</p>
                             <button className="bg-success text-lg font-semibold text-surface border border-border rounded-lg">See more</button>
                         </div>
                         <img src={image_1} className="max-w-30 max-h-40" alt="" />

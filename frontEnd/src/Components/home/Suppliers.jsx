@@ -4,8 +4,8 @@ import image_1 from '../../images/image_1.png'
 
 export default function Suppliers() {
     return (
-        <div className="pt-8 mt-10">
-            <h2 className="font-semibold text-xl md:text-4xl text-text line-clamp-1">Our Suppliers</h2>
+        <div className="mt-5 md:mt-10">
+            <h1>Our Suppliers</h1>
             <div className='border mt-2 border-border'></div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-4">
                 <div className="flex items-center gap-4 bg-surface border-border border p-2 rounded-lg">
